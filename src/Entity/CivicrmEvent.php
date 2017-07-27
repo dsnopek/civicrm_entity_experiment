@@ -132,7 +132,7 @@ class CivicrmEvent extends ContentEntityBase implements CivicrmEventInterface {
     $fields = parent::baseFieldDefinitions($entity_type);
 
     $fields['title'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('title'))
+      ->setLabel(t('Title'))
       ->setDescription(t('The title of the CiviCRM Event entity.'))
       ->setSettings([
         'max_length' => 50,
