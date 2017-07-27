@@ -36,6 +36,7 @@ use Drupal\user\UserInterface;
  *   },
  *   admin_permission = "administer civicrm event entities",
  *   base_table = "civicrm_event",
+ *   civicrm_entity = "Event",
  *   entity_keys = {
  *     "id" = "id",
  *     "label" = "title",
