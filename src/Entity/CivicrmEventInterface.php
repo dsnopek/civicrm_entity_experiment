@@ -11,7 +11,7 @@ use Drupal\user\EntityOwnerInterface;
  *
  * @ingroup civicrm_entity
  */
-interface CivicrmEventInterface extends  ContentEntityInterface, EntityChangedInterface, EntityOwnerInterface {
+interface CivicrmEventInterface extends ContentEntityInterface/*, EntityOwnerInterface*/ {
 
   // Add get/set methods for your configuration properties here.
 
@@ -33,25 +33,6 @@ interface CivicrmEventInterface extends  ContentEntityInterface, EntityChangedIn
    *   The called CiviCRM Event entity.
    */
   public function setName($name);
-
-  /**
-   * Gets the CiviCRM Event creation timestamp.
-   *
-   * @return int
-   *   Creation timestamp of the CiviCRM Event.
-   */
-  public function getCreatedTime();
-
-  /**
-   * Sets the CiviCRM Event creation timestamp.
-   *
-   * @param int $timestamp
-   *   The CiviCRM Event creation timestamp.
-   *
-   * @return \Drupal\civicrm_entity\Entity\CivicrmEventInterface
-   *   The called CiviCRM Event entity.
-   */
-  public function setCreatedTime($timestamp);
 
   /**
    * Returns the CiviCRM Event published status indicator.

@@ -19,7 +19,7 @@ class CivicrmEventListBuilder extends EntityListBuilder {
    */
   public function buildHeader() {
     $header['id'] = $this->t('CiviCRM Event ID');
-    $header['name'] = $this->t('Name');
+    $header['title'] = $this->t('Title');
     return $header + parent::buildHeader();
   }
 
@@ -29,7 +29,7 @@ class CivicrmEventListBuilder extends EntityListBuilder {
   public function buildRow(EntityInterface $entity) {
     /* @var $entity \Drupal\civicrm_entity\Entity\CivicrmEvent */
     $row['id'] = $entity->id();
-    $row['name'] = Link::createFromRoute(
+    $row['title'] = Link::createFromRoute(
       $entity->label(),
       'entity.civicrm_event.edit_form',
       ['civicrm_event' => $entity->id()]

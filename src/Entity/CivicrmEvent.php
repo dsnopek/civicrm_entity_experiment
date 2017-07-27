@@ -35,13 +35,11 @@ use Drupal\user\UserInterface;
  *     },
  *   },
  *   admin_permission = "administer civicrm event entities",
+ *   base_table = "civicrm_event",
  *   entity_keys = {
  *     "id" = "id",
- *     "label" = "name",
- *     "uuid" = "uuid",
- *     "uid" = "user_id",
- *     "langcode" = "langcode",
- *     "status" = "status",
+ *     "label" = "title",
+ *     "status" = "is_active",
  *   },
  *   links = {
  *     "canonical" = "/admin/structure/civicrm_event/{civicrm_event}",
@@ -55,16 +53,16 @@ use Drupal\user\UserInterface;
  */
 class CivicrmEvent extends ContentEntityBase implements CivicrmEventInterface {
 
-  use EntityChangedTrait;
-
   /**
    * {@inheritdoc}
    */
   public static function preCreate(EntityStorageInterface $storage_controller, array &$values) {
     parent::preCreate($storage_controller, $values);
+    /*
     $values += [
       'user_id' => \Drupal::currentUser()->id(),
     ];
+    */
   }
 
   /**
@@ -79,21 +77,6 @@ class CivicrmEvent extends ContentEntityBase implements CivicrmEventInterface {
    */
   public function setName($name) {
     $this->set('name', $name);
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getCreatedTime() {
-    return $this->get('created')->value;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setCreatedTime($timestamp) {
-    $this->set('created', $timestamp);
     return $this;
   }
 
@@ -131,14 +114,14 @@ class CivicrmEvent extends ContentEntityBase implements CivicrmEventInterface {
    * {@inheritdoc}
    */
   public function isPublished() {
-    return (bool) $this->getEntityKey('status');
+    return (bool) $this->getEntityKey('is_active');
   }
 
   /**
    * {@inheritdoc}
    */
   public function setPublished($published) {
-    $this->set('status', $published ? TRUE : FALSE);
+    $this->set('is_active', $published ? TRUE : FALSE);
     return $this;
   }
 
@@ -148,34 +131,9 @@ class CivicrmEvent extends ContentEntityBase implements CivicrmEventInterface {
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = parent::baseFieldDefinitions($entity_type);
 
-    $fields['user_id'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('Authored by'))
-      ->setDescription(t('The user ID of author of the CiviCRM Event entity.'))
-      ->setRevisionable(TRUE)
-      ->setSetting('target_type', 'user')
-      ->setSetting('handler', 'default')
-      ->setTranslatable(TRUE)
-      ->setDisplayOptions('view', [
-        'label' => 'hidden',
-        'type' => 'author',
-        'weight' => 0,
-      ])
-      ->setDisplayOptions('form', [
-        'type' => 'entity_reference_autocomplete',
-        'weight' => 5,
-        'settings' => [
-          'match_operator' => 'CONTAINS',
-          'size' => '60',
-          'autocomplete_type' => 'tags',
-          'placeholder' => '',
-        ],
-      ])
-      ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);
-
-    $fields['name'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Name'))
-      ->setDescription(t('The name of the CiviCRM Event entity.'))
+    $fields['title'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('title'))
+      ->setDescription(t('The title of the CiviCRM Event entity.'))
       ->setSettings([
         'max_length' => 50,
         'text_processing' => 0,
@@ -193,18 +151,14 @@ class CivicrmEvent extends ContentEntityBase implements CivicrmEventInterface {
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    $fields['status'] = BaseFieldDefinition::create('boolean')
+    $fields['is_active'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('Publishing status'))
       ->setDescription(t('A boolean indicating whether the CiviCRM Event is published.'))
       ->setDefaultValue(TRUE);
 
-    $fields['created'] = BaseFieldDefinition::create('created')
+    $fields['created_date'] = BaseFieldDefinition::create('datetime')
       ->setLabel(t('Created'))
       ->setDescription(t('The time that the entity was created.'));
-
-    $fields['changed'] = BaseFieldDefinition::create('changed')
-      ->setLabel(t('Changed'))
-      ->setDescription(t('The time that the entity was last edited.'));
 
     return $fields;
   }
