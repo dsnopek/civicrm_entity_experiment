@@ -1,0 +1,3 @@
+services:
+  entity.query.civicrm:
+    class: Drupal\civicrm_entity\Query\CivicrmQueryFactory

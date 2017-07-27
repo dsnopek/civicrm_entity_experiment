@@ -1,0 +1,14 @@
+{
+  "name": "drupal/civicrm_entity",
+  "type": "drupal-module",
+  "description": "CiviCRM Entity",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/civicrm_entity",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/civicrm_entity",
+    "source": "http://cgit.drupalcode.org/civicrm_entity"
+  },
+  "require": { }
+}

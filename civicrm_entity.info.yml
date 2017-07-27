@@ -1,0 +1,7 @@
+name: civicrm_entity
+type: module
+description: CiviCRM Entity
+core: 8.x
+package: CiviCRM
+dependencies:
+  - civicrm

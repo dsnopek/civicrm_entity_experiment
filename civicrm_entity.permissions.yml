@@ -1,0 +1,22 @@
+add civicrm event entities:
+  title: 'Create new CiviCRM Event entities'
+
+administer civicrm event entities:
+  title: 'Administer CiviCRM Event entities'
+  description: 'Allow to access the administration form to configure CiviCRM Event entities.'
+  restrict access: true
+
+delete civicrm event entities:
+  title: 'Delete CiviCRM Event entities'
+
+edit civicrm event entities:
+  title: 'Edit CiviCRM Event entities'
+
+access civicrm event overview:
+  title: 'Access the CiviCRM Event overview page'
+
+view published civicrm event entities:
+  title: 'View published CiviCRM Event entities'
+
+view unpublished civicrm event entities:
+  title: 'View unpublished CiviCRM Event entities'

@@ -1,0 +1,22 @@
+# CiviCRM Event routing definition
+civicrm_event.settings_tab:
+  route_name: civicrm_event.settings
+  title: 'Settings'
+  base_route: civicrm_event.settings
+
+entity.civicrm_event.canonical:
+  route_name: entity.civicrm_event.canonical
+  base_route: entity.civicrm_event.canonical
+  title: 'View'
+
+entity.civicrm_event.edit_form:
+  route_name: entity.civicrm_event.edit_form
+  base_route: entity.civicrm_event.canonical
+  title: 'Edit'
+
+entity.civicrm_event.delete_form:
+  route_name:  entity.civicrm_event.delete_form
+  base_route:  entity.civicrm_event.canonical
+  title: Delete
+  weight: 10
+

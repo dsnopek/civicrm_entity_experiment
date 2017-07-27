@@ -1,0 +1,5 @@
+entity.civicrm_event.add_form:
+  route_name: entity.civicrm_event.add_form
+  title: 'Add CiviCRM Event'
+  appears_on:
+    - entity.civicrm_event.collection

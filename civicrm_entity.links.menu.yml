@@ -1,0 +1,14 @@
+
+# CiviCRM Event menu items definition
+entity.civicrm_event.collection:
+  title: 'CiviCRM Event list'
+  route_name: entity.civicrm_event.collection
+  description: 'List CiviCRM Event entities'
+  parent: system.admin_structure
+  weight: 100
+
+civicrm_event.admin.structure.settings:
+  title: CiviCRM Event settings
+  description: 'Configure CiviCRM Event entities'
+  route_name: civicrm_event.settings
+  parent: system.admin_structure
